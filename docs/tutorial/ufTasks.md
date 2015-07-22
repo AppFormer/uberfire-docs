@@ -365,6 +365,14 @@ Here’s what ProjectsView.ui.xml look like:
 
 </ui:UiBinder>
 ````
+
+You're going to need this method on ProjectsPresenter.java, let's keep it empty for now:
+```
+    public void newProject() {
+        //TODO
+    }
+```
+
 And the owner class for the above template might look like this:
 ```
 package org.uberfire.client.screens;
@@ -467,12 +475,6 @@ The next step of our project is to provide a real implementation to new project 
                 presenter.newProject();
             }
         } );
-    }
-```
-And create this method on ProjectsPresenter.java
-```
-    public void newProject() {
-        //TODO
     }
 ```
 This method will call another presenter, in order to display the popup (modal) and ask user for new project name. To achieve this, let's create these classes on org.uberfire.client.screens.popup package:
