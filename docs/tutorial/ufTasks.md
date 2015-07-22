@@ -343,7 +343,7 @@ Now we have the basic infrastructure required to our project, it's time to put s
 ###ProjectsView
 Our view has two components: a [Bootstrap3](https://gwtbootstrap3.github.io/gwtbootstrap3-demo/#listGroup) LinkedGroup to list our projects and a button to create new ones.
 
-Here’s what ProjectView.ui.xml look like:
+Here’s what ProjectsView.ui.xml look like:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
