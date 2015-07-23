@@ -366,11 +366,23 @@ Here’s what ProjectsView.ui.xml look like:
 </ui:UiBinder>
 ````
 
-You're going to need this method on ProjectsPresenter.java, let's keep it empty for now:
+We need to do some changes on ProjectsPresenter.java:
+
+Add this placeholder method:
 ```
     public void newProject() {
         //TODO
     }
+```
+
+Then let's add some methods on the ProjectsPresent.View interface:
+```
+public interface View extends UberView<ProjectsPresenter> {
+
+    void clearProjects();
+    void addProject( String projectName,
+            boolean selected );
+}
 ```
 
 And the owner class for the above template might look like this:
