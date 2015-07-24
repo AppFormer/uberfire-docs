@@ -368,9 +368,17 @@ Here’s what ProjectsView.ui.xml look like:
 
 We need to do some changes on ProjectsPresenter.java:
 
-Add this placeholder method:
+Add these two placeholder methods:
 ```
     public void newProject() {
+        //TODO
+    }
+
+    public void selectProject( final String projectName ) {
+        //TODO
+    }
+
+    public void createNewProject( final String projectName ) {
         //TODO
     }
 ```
