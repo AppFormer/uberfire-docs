@@ -668,7 +668,7 @@ public class NewProjectView extends Composite
   </g:FlowPanel>
 </ui:UiBinder>
 ```
-We have also to change **ProjectPresenter.java** in order to open the popup and receive the name of new project created. And this snippet to our class.
+We have also to change **ProjectsPresenter.java** in order to open the popup and receive the name of new project created. And this snippet to our class.
 ```
     @Inject
     private NewProjectPresenter newProjectPresenter;
