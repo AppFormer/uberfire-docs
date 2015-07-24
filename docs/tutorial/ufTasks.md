@@ -887,9 +887,6 @@ public class TasksPresenter {
 
     private String currentSelectedProject;
 
-    @Inject
-    private NewFolderPresenter newFolderPresenter;
-
     @WorkbenchPartTitle
     public String getTitle() {
         return "Tasks";
@@ -910,10 +907,6 @@ public class TasksPresenter {
         updateView( null );
     }
 
-    public void showNewFolder() {
-        newFolderPresenter.show( this );
-    }
-
     private void updateView( String folderName ) {
         view.clearTasks();
         if(folderName!=null){
@@ -927,7 +920,7 @@ public class TasksPresenter {
 
 }
 ```
-Pay attention to showNewFolder() method. This opens a popup to ask for folder name. The popup structure is like NewProject* structure.Let's create it inside package org.uberfire.client.screens.popup:
+We're going to use a popup structure, like NewProject* structure. Let's create it inside package org.uberfire.client.screens.popup:
 
 **NewFolderPresenter.java**
 ```
@@ -1094,6 +1087,17 @@ public class NewFolderView extends Composite
   </g:FlowPanel>
 </ui:UiBinder>
 ```
+
+Now that we have the popup code in place, let's add this code to **TasksPresenter.java**. Pay attention to `showNewFolder()` method. This opens the popup to ask for the folder name.
+```
+    @Inject
+    private NewFolderPresenter newFolderPresenter;
+
+    public void showNewFolder() {
+        newFolderPresenter.show( this );
+    }
+```
+
 ###Time to see it work!
 
 Refresh the browser, create two projects and click in one of them. Create a new folder and the result will be something like:
