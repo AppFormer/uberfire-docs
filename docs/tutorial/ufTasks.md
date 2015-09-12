@@ -343,7 +343,7 @@ Now we have the basic infrastructure required to our project, it's time to put s
 ###ProjectsView
 Our view has two components: a [Bootstrap3](https://gwtbootstrap3.github.io/gwtbootstrap3-demo/#listGroup) LinkedGroup to list our projects and a button to create new ones.
 
-Here’s what ProjectView.ui.xml look like:
+Here’s what ProjectsView.ui.xml look like:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
@@ -365,6 +365,34 @@ Here’s what ProjectView.ui.xml look like:
 
 </ui:UiBinder>
 ````
+
+We need to do some changes on ProjectsPresenter.java:
+
+Add these two placeholder methods:
+```
+    public void newProject() {
+        //TODO
+    }
+
+    public void selectProject( final String projectName ) {
+        //TODO
+    }
+
+    public void createNewProject( final String projectName ) {
+        //TODO
+    }
+```
+
+Then let's add some methods on the ProjectsPresent.View interface:
+```
+public interface View extends UberView<ProjectsPresenter> {
+
+    void clearProjects();
+    void addProject( String projectName,
+            boolean selected );
+}
+```
+
 And the owner class for the above template might look like this:
 ```
 package org.uberfire.client.screens;
@@ -467,12 +495,6 @@ The next step of our project is to provide a real implementation to new project 
                 presenter.newProject();
             }
         } );
-    }
-```
-And create this method on ProjectsPresenter.java
-```
-    public void newProject() {
-        //TODO
     }
 ```
 This method will call another presenter, in order to display the popup (modal) and ask user for new project name. To achieve this, let's create these classes on org.uberfire.client.screens.popup package:
@@ -646,7 +668,7 @@ public class NewProjectView extends Composite
   </g:FlowPanel>
 </ui:UiBinder>
 ```
-We have also to change **ProjectPresenter.java** in order to open the popup and receive the name of new project created. And this snippet to our class.
+We have also to change **ProjectsPresenter.java** in order to open the popup and receive the name of new project created. And this snippet to our class.
 ```
     @Inject
     private NewProjectPresenter newProjectPresenter;
@@ -865,9 +887,6 @@ public class TasksPresenter {
 
     private String currentSelectedProject;
 
-    @Inject
-    private NewFolderPresenter newFolderPresenter;
-
     @WorkbenchPartTitle
     public String getTitle() {
         return "Tasks";
@@ -888,10 +907,6 @@ public class TasksPresenter {
         updateView( null );
     }
 
-    public void showNewFolder() {
-        newFolderPresenter.show( this );
-    }
-
     private void updateView( String folderName ) {
         view.clearTasks();
         if(folderName!=null){
@@ -905,7 +920,7 @@ public class TasksPresenter {
 
 }
 ```
-Pay attention to showNewFolder() method. This opens a popup to ask for folder name. The popup structure is like NewProject* structure.Let's create it inside package org.uberfire.client.screens.popup:
+We're going to use a popup structure, like NewProject* structure. Let's create it inside package org.uberfire.client.screens.popup:
 
 **NewFolderPresenter.java**
 ```
@@ -1072,6 +1087,17 @@ public class NewFolderView extends Composite
   </g:FlowPanel>
 </ui:UiBinder>
 ```
+
+Now that we have the popup code in place, let's add this code to **TasksPresenter.java**. Pay attention to `showNewFolder()` method. This opens the popup to ask for the folder name.
+```
+    @Inject
+    private NewFolderPresenter newFolderPresenter;
+
+    public void showNewFolder() {
+        newFolderPresenter.show( this );
+    }
+```
+
 ###Time to see it work!
 
 Refresh the browser, create two projects and click in one of them. Create a new folder and the result will be something like:
