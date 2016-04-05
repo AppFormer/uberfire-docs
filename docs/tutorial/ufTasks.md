@@ -247,7 +247,7 @@ In this definition, we’ll add a new panel on the left-hand side (WEST) and pop
 
 
 
-Inside the package org.uberfire.client, modify the setup method like follows to create a menu item to the "TaskPerspective" we just defined before (instead of the "MainPerspective"):
+Inside the package org.uberfire.client, modify the setup method like follows to create a menu item to the "TaskPerspective" we just defined before (instead of the "MainPerspective"):     
 
 - ShowcaseEntryPoint.java
 
